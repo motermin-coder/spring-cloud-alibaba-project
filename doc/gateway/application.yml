@@ -1,0 +1,35 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: my-first-route
+          uri: lb://produce-service
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
+        - id: my-openfeign-route
+          uri: lb://other-service
+          predicates:
+            - Path=/{segment}/port
+        - id: my-auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
