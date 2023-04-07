@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        shared-configs: application.yml # 共享问配置文件
+  main:
+    allow-bean-definition-overriding: true
