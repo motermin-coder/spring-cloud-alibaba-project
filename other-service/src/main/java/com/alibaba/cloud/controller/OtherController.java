@@ -21,6 +21,7 @@ public class OtherController {
     @Value("${server.port}")
     private String port;
 
+
     @GetMapping("/info")
     public String info(){
         return "This is a test message! Current port is :" + port;

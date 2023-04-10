@@ -8,6 +8,10 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
     gateway:
+      discovery:
+        locator:
+          enabled: true   # 激活动态路由，通过服务发现查找服务
+          lower-case-service-id: true # 忽略服务名的大小写
       routes:
         - id: my-first-route
           uri: lb://produce-service
